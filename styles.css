@@ -1,0 +1,13 @@
+body{
+    font-family:Arial, Helvetica, sans-serif; 
+    
+}
+
+
+#dog {
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    width: 100px; /* Need a specific value to work */
+}

@@ -1,4 +1,5 @@
-console.log("test")
+
+
 
 function parseNode(node) {
     if (node.nodeType === Node.ELEMENT_NODE) {
@@ -60,6 +61,25 @@ function parseNode(node) {
     return parseNode(svgRoot);
   }
 
+  function toggleVisibility(id) {
+    const element = document.getElementById(id);
+    if (element) {
+      const currentDisplay = element.style.display;
+      element.style.display = currentDisplay === 'none' ? '' : 'none';
+    } else {
+      console.log(`Element not found with ID: ${id}`);
+    }
+  }
+
+  const contentMapping = {
+    'squoran': function () {
+        toggleVisibility("dog")
+    },
+    'element2': '<p>Content for element 2</p><a href="https://example.org">Another Link</a>',
+    // Add more content for other element IDs as needed
+  };
+  
+
  const testerString = `
  <svg width="2107" height="1897" viewBox="0 0 2107 1897" fill="none" xmlns="http://www.w3.org/2000/svg">
  <rect width="2107" height="1897" fill="#F5F5F5"/>
@@ -89,7 +109,6 @@ function parseNode(node) {
   newString = svgToJson(testerString)
 
 
-console.log(newString)
 
 function createElementFromJson(json) {
     if (json.type === 'element') {
@@ -121,13 +140,24 @@ function createElementFromJson(json) {
     // Add onclick event listeners for text and shape elements, excluding path elements
     const shapeAndTextElements = ['rect', 'circle', 'ellipse', 'polygon', 'polyline', 'line', 'text'];
     if (shapeAndTextElements.includes(json.tagName) && json.tagName !== 'path') {
-      element.addEventListener('click', (e) => {
-        console.log(`Clicked on ${json.tagName} element with ID: ${json.attributes.id || 'unknown'}`);
-      });
+        element.addEventListener('click', (e) => {
+          const id = json.attributes.id || 'unknown';
+          performActionBasedOnId(id, contentMapping);
+        });
+      }
+    
+      return element;
     }
-  
-    return element;
-  }
+    
+    function performActionBasedOnId(id, contentMapping) {
+      const actionFunction = contentMapping[id];
+      if (actionFunction) {
+        actionFunction();
+      } else {
+        console.log(`No action found for element with ID: ${id}`);
+      }
+    }
+    
   
   function createTextNodeFromJson(json) {
     return document.createTextNode(json.content);
