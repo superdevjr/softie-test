@@ -1,4 +1,4 @@
-import { newString } from "./svg-to-json.js";
+import { newString } from "./modules/svg-to-json.js";
 
 function jsonToSvg(json) {
   const svgElement = createElementNodeFromJson(json);
