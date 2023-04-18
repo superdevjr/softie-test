@@ -1,5 +1,8 @@
+import { svgString } from "./svg-string-for-export.js";
+export const newString = svgToJson(svgString);
+
 // Main function to convert an SVG string to a JSON object
-export function svgToJson(svgString) {
+function svgToJson(svgString) {
   const parser = new DOMParser();
   const svgDoc = parser.parseFromString(svgString, "image/svg+xml");
   const svgRoot = svgDoc.documentElement;
