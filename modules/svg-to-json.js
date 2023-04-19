@@ -41,9 +41,8 @@ function getAttributes(node) {
 
 // Gets the child nodes of a DOM element and returns an array of JSON objects
 function getChildNodes(node) {
-  return Array.from(node.childNodes)
-    .map((childNode) => parseNode(childNode))
-    .filter((parsedChildNode) => parsedChildNode);
+  return Array.from(node.childNodes).map((childNode) => parseNode(childNode));
+  // .filter((parsedChildNode) => parsedChildNode);
 }
 
 // Parses a text node and returns a JSON object

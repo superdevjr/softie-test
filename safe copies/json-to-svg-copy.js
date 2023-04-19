@@ -1,5 +1,3 @@
-import { newString } from "./svg-to-json.js";
-
 function createElementFromJson(json) {
   if (json.type === "element") {
     return createElementNodeFromJson(json);
@@ -8,7 +6,7 @@ function createElementFromJson(json) {
   }
 }
 
-function createElementNodeFromJson(json) {
+export function createElementNodeFromJson(json) {
   const element = document.createElementNS(
     "http://www.w3.org/2000/svg",
     json.tagName
@@ -20,7 +18,9 @@ function createElementNodeFromJson(json) {
 
   for (const childJson of json.children) {
     const childNode = createElementFromJson(childJson);
-    element.appendChild(childNode);
+    if (childNode) {
+      element.appendChild(childNode);
+    }
   }
   return element;
 }
@@ -28,5 +28,3 @@ function createElementNodeFromJson(json) {
 function createTextNodeFromJson(json) {
   return document.createTextNode(json.content);
 }
-
-export const svgElement = createElementNodeFromJson(newString);

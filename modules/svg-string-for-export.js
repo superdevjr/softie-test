@@ -22,4 +22,4 @@ export let svgString = `
  <line id="Line 3" x1="1095.5" y1="829.048" x2="1014.5" y2="1676.05" stroke="black"/>
  <ellipse id="Ellipse 1" cx="937.5" cy="1786.5" rx="383.5" ry="110.5" fill="#D9D9D9"/>
  </g>
- </svg>`
+ </svg>`;
