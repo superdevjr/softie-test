@@ -1,3 +1,5 @@
+//step 1 import from figma
+
 export let svgString = `
 <svg width="1808" height="1897" viewBox="0 0 1808 1897" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Component 1">

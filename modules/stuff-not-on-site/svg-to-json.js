@@ -1,5 +1,5 @@
+//This code will not be in the website, the exported JSON will live in a database
 import { svgString } from "./svg-string-for-export.js";
-export const newString = svgToJson(svgString);
 
 // Main function to convert an SVG string to a JSON object
 function svgToJson(svgString) {
@@ -54,3 +54,5 @@ function parseTextNode(node) {
     content: textContent,
   };
 }
+
+export const JSONfromSVG = svgToJson(svgString);
