@@ -81,7 +81,7 @@ function openModalWindow(element, modalContentObject) {
       linkElement.href = link.url;
       modalLink.appendChild(linkElement);
 
-      addReadToggleButton(modalLink, link); // Pass the original link object
+      addReadToggleButton(modalLink, link, element.id); // Pass the original link object
 
       modalLinks.appendChild(modalLink);
     });
@@ -93,9 +93,20 @@ function openModalWindow(element, modalContentObject) {
   modalBackground.addEventListener("click", () => {
     closeModalWindow(modalWindow, modalBackground);
   });
+
+  updateProgressBar(element.id, links);
 }
 
-function addReadToggleButton(modalLink, link) {
+function updateProgressBar(modalId, links) {
+  const totalLinks = links.length;
+  const readLinks = links.filter((link) => link.read).length;
+  const progressPercentage = (readLinks / totalLinks) * 100;
+
+  const progressFill = document.getElementById("modal-progress-fill");
+  progressFill.style.width = `${progressPercentage}%`;
+}
+
+function addReadToggleButton(modalLink, link, modalId) {
   const readToggleButton = document.createElement("button");
   readToggleButton.textContent = link.read ? "Mark as unread" : "Mark as read";
   readToggleButton.addEventListener("click", () => {
@@ -113,7 +124,11 @@ function addReadToggleButton(modalLink, link) {
         .flat()
         .join("\n")
     );
+
+    // Update the progress bar
+    updateProgressBar(modalId, modalContentObject[modalId].links);
   });
+
   modalLink.appendChild(readToggleButton);
 }
 

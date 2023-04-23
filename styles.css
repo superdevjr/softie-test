@@ -44,3 +44,17 @@
 .modal-content a:hover {
   text-decoration: underline;
 }
+
+.modal-progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+}
+
+.modal-progress-fill {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  border-radius: 4px;
+}
